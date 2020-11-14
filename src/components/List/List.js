@@ -18,6 +18,7 @@ export default class List extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this); // ADD ITEM: THIS HAPPENS FIRST
     this.addItem = this.addItem.bind(this); // ADD ITEM: THIS HAPPENS SECOND
+    this.removeItem = this.removeItem.bind(this);
   }
 
   handleInput(e) {
@@ -45,6 +46,13 @@ export default class List extends React.Component {
     }
   }
 
+  removeItem(key) {
+    const filteredItems = this.state.items.filter((item) => item.key !== key);
+    this.setState({
+      items: filteredItems
+    });
+  }
+
   render() {
     return(
       <div className="list">
@@ -63,6 +71,10 @@ export default class List extends React.Component {
         <ul className="list-group">
           {this.state.items.map((item) => (
             <li className="list-group-item" key={item.key}>
+              <span
+                onClick={() => this.removeItem(item.key)}
+                style={{ textDecoration: "underline", cursor: "pointer" }}
+              >[REMOVE]</span>{" "}
               {item.value}
             </li>
           ))}
