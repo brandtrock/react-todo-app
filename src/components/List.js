@@ -1,4 +1,7 @@
 import React from 'react';
+import Header from './Header';
+import AddItem from './AddItem';
+import ListGroup from './ListGroup';
 import './List.css';
 
 export default class List extends React.Component {
@@ -37,6 +40,7 @@ export default class List extends React.Component {
     e.preventDefault();
 
     const newItem = this.state.currentItem;
+    console.log('newItem: ', newItem);
     if (newItem.value !== "") {
       const items = [...this.state.items, newItem];
       this.setState({
@@ -70,35 +74,17 @@ export default class List extends React.Component {
   render() {
     return(
       <div className="list">
-        <h1>My Todo App</h1>
-        <form onSubmit={this.addItem}>
-          <div className="input-group">
-            <input
-              className="form-control"
-              type="text"
-              placeholder="Add item . . ."
-              value={this.state.currentItem.value}
-              onChange={this.handleInput}
-            />
-            <span className="input-group-btn">
-              <button className="btn btn-default" type="submit">Add</button>
-            </span>
-          </div>
-        </form>
-        <ul className="list-group row">
-          {this.state.items.map((item) => (
-            <li className="list-group-item col-md-8" key={item.key}>
-              <span className="item-checkbox">
-                <input type="checkbox" onClick={() => this.itemCheckbox(item.key)} />
-              </span>
-              <span className={ item.isComplete ? "list-item complete" : "list-item"}>{item.value}</span>
-              <span
-                onClick={() => this.removeItem(item.key)}
-                className="badge remove-item"
-              >{"X"}</span>
-            </li>
-          ))}
-        </ul>
+        <Header />
+        <AddItem
+          addItem={this.addItem}
+          currentItem={this.state.currentItem}
+          handleInput={this.handleInput}
+        />
+        <ListGroup
+          items={this.state.items}
+          itemCheckbox={this.itemCheckbox}
+          removeItem={this.removeItem}
+        />
       </div>
     );
   }
