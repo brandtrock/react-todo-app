@@ -8,7 +8,6 @@ class List extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       items: [
         { key: 0, value: 'First Item', isComplete: false },
@@ -17,7 +16,7 @@ class List extends Component {
       ],
       currentItem: {
         key: '',
-        name: '',
+        value: '',
         isComplete: false
       }
     };
@@ -28,20 +27,20 @@ class List extends Component {
   }
 
   handleInput(e) {
-    this.setState({
-      currentItem: {
-        key: Date.now(),
-        value: e.target.value
-      }
-    });
+    if (e.target.value !== '') {
+      this.setState({
+        currentItem: {
+          key: Date.now(),
+          value: e.target.value
+        }
+      });
+    }
   }
 
   addItem(e) {
     e.preventDefault();
-
     const newItem = this.state.currentItem;
-    console.log('newItem: ', newItem);
-    if (newItem.value !== "") {
+    if (newItem.value !== '') {
       const items = [...this.state.items, newItem];
       this.setState({
         items: items,
@@ -62,18 +61,24 @@ class List extends Component {
   }
 
   itemCheckbox(key) {
-    const tempItems = [...this.state.items]; // make a shallow copy of the items
-    const tempItem = {...tempItems[key]}; // make a shallow copy of the item to mutate
-    tempItem.isComplete = !tempItem.isComplete; // mutate the property
-    tempItems[key] = tempItem; // put the item back into the array
+    // Find the element in the array of objects
+    const itemsIndex = this.state.items.findIndex(item => item.key === key);
+    // Create a copy of the state arry
+    let tempItemsArray = [...this.state.items];
+    // Update the one value
+    tempItemsArray[itemsIndex] = {
+      ...tempItemsArray[itemsIndex],
+      isComplete: !tempItemsArray[itemsIndex].isComplete
+    };
+    // Set State
     this.setState({
-      items: tempItems
-    }); // Set state with the new copy
+      items: tempItemsArray
+    });
   }
 
   render() {
     return(
-      <div className="list">
+      <div className='list'>
         <Header />
         <AddItem
           addItem={this.addItem}
