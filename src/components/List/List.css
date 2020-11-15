@@ -1,0 +1,40 @@
+.list {
+  margin-left: 10px;
+  width: 50%;
+}
+
+.list ul {
+  margin-top: 20px;
+}
+
+.list ul li {
+  margin-left: 15%;
+  text-align: left;
+}
+
+.list ul li:hover {
+  background-color: lightgray;
+}
+
+.item-checkbox {
+  margin-right: 10px;
+}
+
+.list-item {
+  text-align: left;
+}
+
+.complete {
+  color: red;
+  text-decoration: line-through;
+}
+
+.remove-item {
+  cursor: pointer;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.remove-item:hover {
+  text-decoration: underline;
+}
