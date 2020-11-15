@@ -58,17 +58,13 @@ export default class List extends React.Component {
   }
 
   itemCheckbox(key) {
-    // TODO: Finish getting this to work, maybe just use React Hooks?
     const tempItems = [...this.state.items]; // make a shallow copy of the items
     const tempItem = {...tempItems[key]}; // make a shallow copy of the item to mutate
-
-    tempItem.isComplete = true; // mutate the property
+    tempItem.isComplete = !tempItem.isComplete; // mutate the property
     tempItems[key] = tempItem; // put the item back into the array
-
     this.setState({
       items: tempItems
     }); // Set state with the new copy
-    console.log('state 2: ', this.state);
   }
 
   render() {
@@ -95,7 +91,7 @@ export default class List extends React.Component {
               <span className="item-checkbox">
                 <input type="checkbox" onClick={() => this.itemCheckbox(item.key)} />
               </span>
-              <span className="list-item">{item.value}</span>
+              <span className={ item.isComplete ? "list-item complete" : "list-item"}>{item.value}</span>
               <span
                 onClick={() => this.removeItem(item.key)}
                 className="badge remove-item"

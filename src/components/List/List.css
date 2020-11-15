@@ -24,6 +24,11 @@
   text-align: left;
 }
 
+.complete {
+  color: red;
+  text-decoration: line-through;
+}
+
 .remove-item {
   cursor: pointer;
   margin-left: 5px;
