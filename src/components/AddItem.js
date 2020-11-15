@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class AddItem extends React.Component {
+class AddItem extends Component {
 
   render() {
     return(
@@ -21,3 +21,5 @@ export default class AddItem extends React.Component {
     );
   }
 }
+
+export default AddItem;

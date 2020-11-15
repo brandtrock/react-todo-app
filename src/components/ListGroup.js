@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class ListGroup extends React.Component {
+class ListGroup extends Component {
   render() {
     return(
       <ul className="list-group row">
@@ -20,3 +20,5 @@ export default class ListGroup extends React.Component {
     );
   }
 }
+
+export default ListGroup;

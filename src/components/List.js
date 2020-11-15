@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
 import AddItem from './AddItem';
 import ListGroup from './ListGroup';
 import './List.css';
 
-export default class List extends React.Component {
+class List extends Component {
 
   constructor(props) {
     super(props);
@@ -90,3 +90,5 @@ export default class List extends React.Component {
   }
 
 }
+
+export default List;
